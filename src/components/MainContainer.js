@@ -1,8 +1,25 @@
+import { useEffect,useState } from "react";
+import { YOUTUBE_URL } from "../config";
+import VideoCard from "../components/VideoCard";
+
 const MainContainer = () => {
+
+    const[videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        getVideos();
+    }, []);
+
+    async function getVideos() {
+        const data = await fetch(YOUTUBE_URL);
+        const json = await data.json();
+        console.log(json.items);
+        setVideos(json.items);
+    }
+
     return (
-        <div className="flex-1 p-4">
-            <h1 className="text-2xl font-bold mb-4">Main Content</h1>
-            <p>This is where the main content of the YouTube clone will be displayed.</p>
+        <div className="flex flex-wrap w-100">
+            {videos.map((video) => <VideoCard key={video.id} snippet={video.snippet} statistics={video.statistics} />)}
         </div>
     );
 }
