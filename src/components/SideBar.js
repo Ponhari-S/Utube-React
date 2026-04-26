@@ -1,4 +1,11 @@
+import { useSelector } from "react-redux";
+import { isMenuOpen } from "../utils/sidebarSlice";
+
+
 const SideBar = () => {
+    const menuOpen = useSelector(isMenuOpen);
+
+    if (!menuOpen) return null;
     return (
         <div className="w-64 text-black h-screen p-4 shadow-lg">
             <ul className="space-y-2">

@@ -13,5 +13,6 @@ const sidebarSlice = createSlice({
     }
 });
 
+export const isMenuOpen =(state) => state.sidebar.isMenuOpen; 
 export const { toggleSideBar } = sidebarSlice.actions;
 export default sidebarSlice.reducer;
