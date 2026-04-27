@@ -19,7 +19,7 @@ const MainContainer = () => {
 
     return (
         <div className="flex flex-wrap w-100">
-            {videos.map((video) => <VideoCard key={video.id} snippet={video.snippet} statistics={video.statistics} />)}
+            {videos.map((video) => <VideoCard key={video.id} snippet={video.snippet} statistics={video.statistics} id={video.id} />)}
         </div>
     );
 }

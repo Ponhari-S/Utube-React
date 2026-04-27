@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { isMenuOpen } from "../utils/sidebarSlice";
+import { Link } from "react-router-dom";
 
 
 const SideBar = () => {
@@ -7,9 +8,9 @@ const SideBar = () => {
 
     if (!menuOpen) return null;
     return (
-        <div className="text-black p-4 shadow-lg w-60">
+        <div className="text-black p-4 shadow-lg w-40">
             <ul className="space-y-2">
-                <li className="hover:bg-gray-200 p-2 rounded">Home</li>
+                <li className="hover:bg-gray-200 p-2 rounded"><Link to='/'>Home</Link></li>
                 <li className="hover:bg-gray-200 p-2 rounded">Shorts</li>
             </ul>
             <hr className="my-4 border-gray-200" />
