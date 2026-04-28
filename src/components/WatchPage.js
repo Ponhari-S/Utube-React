@@ -15,7 +15,7 @@ const WatchPage = () => {
                 <h1 className="text-2xl font-bold break-words">{snippet.localized.title}</h1>
                 <p className="text-sm text-gray-600">{snippet.channelTitle}</p>
                 <p className="text-sm text-gray-600">{statistics.viewCount} Views</p>
-                <p className="mt-4 break-words whitespace-pre-wrap">{snippet.description}</p>
+                <p className="mt-4 break-words whitespace-pre-wrap bg-gray-100 rounded-lg p-5">{snippet.description}</p>
             </div>
         </div>
     );

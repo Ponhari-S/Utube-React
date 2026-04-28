@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import { YOUTUBE_URL } from "../config";
 import VideoCard from "../components/VideoCard";
+import Shimmer from "./Shimmer";
 
 const MainContainer = () => {
 
@@ -17,6 +18,7 @@ const MainContainer = () => {
         setVideos(json.items);
     }
 
+    if(videos.length === 0) return <Shimmer />;
     return (
         <div className="flex flex-wrap w-100">
             {videos.map((video) => <VideoCard key={video.id} snippet={video.snippet} statistics={video.statistics} id={video.id} />)}
