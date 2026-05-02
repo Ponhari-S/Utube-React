@@ -1,5 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
+import CommentSection from "./CommentSection";
 
 const WatchPage = () => {
     const {id} = useParams();
@@ -28,9 +29,8 @@ const WatchPage = () => {
                 </div>
             </div>
         </div>
-        <div className="w-full max-w-[960px] mx-auto p-4">
-            <h2 className="text-xl font-bold mb-4">Comments</h2>
-            <p className="text-gray-600">Comments section is under development.</p>
+        <div className="w-full max-w-[960px] mx-auto">
+            <CommentSection />
         </div>
         </div>
     );
