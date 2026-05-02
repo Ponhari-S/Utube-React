@@ -14,8 +14,6 @@ const Header = () => {
     const cache = useSelector((state) => state.cache);
     const dispatch = useDispatch();
 
-
-
     useEffect(() => {
 
         async function getSearch(){
