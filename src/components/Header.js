@@ -2,12 +2,19 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleSideBar } from "../utils/sidebarSlice";
 import { YOUTUBE_SEARCH_URL } from "../config";
+import { setSearchResults, setVideoDetails } from "../utils/cacheSlice";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 
     const [search,setSearch] = useState("");
     const [searchResult,setSearchResult] = useState([]);
     const [isShow,setIsShow] = useState(false);
+
+    const cache = useSelector((state) => state.cache);
+    const dispatch = useDispatch();
+
+
 
     useEffect(() => {
 
@@ -17,18 +24,23 @@ const Header = () => {
             console.log(json);
             if (!json.items) return;
             const titles = json.items.map((item) => item.snippet.title);
+            dispatch(setVideoDetails({ videoId: search, details: json.items }));
+            dispatch(setSearchResults({ query: search, results: titles }));
             setSearchResult(titles);
         }
 
         if(search.length > 0){
-            const timer = setTimeout(() => {
-                getSearch();
-            }, 200);
-            return () => clearTimeout(timer);
+            if (cache.searchResults[search]) {
+                setSearchResult(cache.searchResults[search]);
+            } else {
+                const timer = setTimeout(() => {
+                    getSearch();
+                }, 200);
+                return () => clearTimeout(timer);
+            }
         }
-    }, [search]);
+    }, [search, cache.searchResults, dispatch]);
 
-    const dispatch = useDispatch();
 
     const toggleBar = () => {
         dispatch(toggleSideBar());
