@@ -3,13 +3,18 @@ import { Outlet } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./MainContainer";
 import WatchPage from "./WatchPage";
+import SearchPage from "./SearchPage";
+import Header from "./Header";
 
 const Main = () => {
     return (
+        <>
+        <Header />
         <div className="flex">
             <SideBar />
             <Outlet />
         </div>
+        </>
     );
 }
 
@@ -19,12 +24,16 @@ const mainRouter = createBrowserRouter([
         element: <Main />,
         children: [
             {
-                path: "/",
+                index: true,
                 element: <MainContainer />
             },
             {
-                path: "/watch/:id",
+                path: "watch/:id",
                 element: <WatchPage />
+            },
+            {
+                path: "search",
+                element: <SearchPage />
             }
         ]
     }

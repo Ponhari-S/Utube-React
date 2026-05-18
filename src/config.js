@@ -1,2 +1,3 @@
 export const YOUTUBE_URL="https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=IN&maxResults=50&key=AIzaSyBOrWUZtDji2ycKrbT0y-7XYL3uB3JIJN0";
 export const YOUTUBE_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&type=video&q=";
+export const API_KEY="AIzaSyDrd1RyuvSu_87rdYiOCGD2krR3j9ZrUz4";

@@ -16,14 +16,14 @@ const MainContainer = () => {
         const json = await data.json();
         setVideos(json.items);
     }
-
-    if(videos.length === 0) return <Shimmer />;
+    console.log(videos);
+    if(videos?.length === 0) return <Shimmer />;
     return (
         <div className="flex flex-wrap w-100">
             <div className="border-2 border-red-500">
-                <VideoCard key={videos[40].id} snippet={videos[40].snippet} statistics={videos[40].statistics} id={videos[40].id}/>
+                <VideoCard key={videos[20].id} snippet={videos[0].snippet} statistics={videos[0].statistics} id={videos[0].id}/>
             </div>
-            {videos.map((video) => <VideoCard key={video.id} snippet={video.snippet} statistics={video.statistics} id={video.id} />)}
+            {videos?.map((video) => <VideoCard key={video.id} snippet={video.snippet} statistics={video.statistics} id={video.id} />)}
         </div>
     );
 }

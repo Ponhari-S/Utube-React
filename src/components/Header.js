@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleSideBar } from "../utils/sidebarSlice";
-import { YOUTUBE_SEARCH_URL } from "../config";
+import { YOUTUBE_SEARCH_URL,API_KEY } from "../config";
 import { setSearchResults, setVideoDetails } from "../utils/cacheSlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
 
     const [search,setSearch] = useState("");
     const [searchResult,setSearchResult] = useState([]);
     const [isShow,setIsShow] = useState(false);
-
+    const navigate = useNavigate();
     const cache = useSelector((state) => state.cache);
     const dispatch = useDispatch();
+
+    const handleSearchResultClick = (index) => {
+        setSearch(index);
+        setSearchResult([]);
+        setIsShow(false);
+        navigate(`/search?v=${encodeURIComponent(index)}`);
+    }
 
     useEffect(() => {
 
         async function getSearch(){
-            const data= await fetch(YOUTUBE_SEARCH_URL + search + "&key=AIzaSyBOrWUZtDji2ycKrbT0y-7XYL3uB3JIJN0");
+            const data= await fetch(YOUTUBE_SEARCH_URL + search + "&key="+API_KEY);
             const json = await data.json();
             console.log(json);
             if (!json.items) return;
@@ -54,10 +62,10 @@ const Header = () => {
         </div>
         <div className="bg-gray-200 flex items-center rounded-full overflow-hidden border border-gray-300">
             <input type="text" className="w-80 h-8 rounded-l-full px-5" value={search} onChange={(e)=>setSearch(e.target.value)} onFocus={() => setIsShow(true)} onBlur={() => setIsShow(false)}/>
-            <button className="h-8 w-20 rounded-l-full">Search</button>
+            <button className="h-8 w-20 rounded-l-full" onClick={()=>handleSearchResultClick(search)}>Search</button>
             {isShow && <div className="mt-2 absolute top-12 bg-white border border-gray-300 w-80 rounded-md shadow-lg">
                 {searchResult.map((result,index) => (
-                    <div key={index} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <div key={index} className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onMouseDown={() => handleSearchResultClick(result)}>
                         {result}
                     </div>
                 ))}
