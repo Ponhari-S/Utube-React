@@ -1,4 +1,10 @@
+import { useEffect, useRef } from 'react';
+
 const LiveComment = ({ messages }) => {
+    const bottomRef = useRef(null);
+    useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
     return (
         <div className="flex flex-col space-y-2">
             {messages.map((message) => (
