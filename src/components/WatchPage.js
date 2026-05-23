@@ -1,6 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
 import CommentSection from "./CommentSection";
+import LiveSection from "./LiveSection";
 
 const WatchPage = () => {
     const {id} = useParams();
@@ -39,12 +40,9 @@ const WatchPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-80 h-[500px] border-2 border-gray-300 rounded-md flex flex-col">
-                    <div className="p-3 border-b border-gray-300">
-                        <h2 className="font-bold text-sm">Live Chat</h2>
-                    </div>
-                    <div className="flex-1 overflow-y-auto p-3">
-                        <p className="text-sm text-gray-500 text-center mt-10">Live chat is not available</p>
+                <div >
+                    <div>
+                        <LiveSection />
                     </div>
                 </div>
             </div>
