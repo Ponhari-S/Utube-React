@@ -1,4 +1,4 @@
-export const USERS = ["Hari", "Ram", "Priya", "Ravi", "Sneha", "Arjun", "Divya", "Karthik"];
+export const USERS = ["Hari", "Ram", "Priya", "Ravi", "Sneha", "Arjun", "Divya", "Karthik","Adil"];
 export const MESSAGES = [
     "Hello everyone! 👋",
     "Great video!",
