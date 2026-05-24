@@ -2,12 +2,17 @@ import { useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
 import CommentSection from "./CommentSection";
 import LiveSection from "./LiveSection";
+import { addLiveChatMessage } from "../utils/liveSlice";
+import { useDispatch } from "react-redux";
 
 const WatchPage = () => {
+    const dispatch = useDispatch();
     const {id} = useParams();
     const {state} = useLocation();
     const {snippet, statistics} = state;
     const [isExpanded, setIsExpanded] = useState(false);
+    const [chat,setChat] = useState("");
+    console.log(chat);
 
     return (
         <div className="flex flex-col p-6 max-w-[1400px] mx-auto">
@@ -43,6 +48,16 @@ const WatchPage = () => {
                 <div >
                     <div>
                         <LiveSection />
+                        <form className="w-full flex mt-4" id="chatForm">
+                        <input type="text" className="px-2 w-full rounded-l-md bg-gray-200" value={chat} onChange={(e)=>setChat(e.target.value)}></input>
+                        <button className="bg-blue-500 text-white px-2 rounded-r-md h-10" onClick={
+                            (e) => {
+                                e.preventDefault();
+                                if(chat.length!==0) dispatch(addLiveChatMessage({id: Date.now(), name: "HariPantDC", msg: chat}));
+                                setChat("");
+                            }
+                        }>Send</button>
+                        </form>
                     </div>
                 </div>
             </div>
